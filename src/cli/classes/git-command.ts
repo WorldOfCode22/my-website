@@ -1,6 +1,7 @@
 import { Flag } from '../classes/flag'
 import { FlagExpected } from './errors/user-input-errors/flag-expected'
 import { spawn } from 'child_process'
+import { StringDecoder } from 'string_decoder'
 /**
  * class to process git command
  */
