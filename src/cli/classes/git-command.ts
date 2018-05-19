@@ -4,7 +4,7 @@ import { spawn } from 'child_process'
 /**
  * class to process git command
  */
-class GitCommand {
+export class GitCommand {
   private _flags: Flag[]
   private _flagCommand?: string
   private _remote: boolean = false

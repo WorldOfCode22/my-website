@@ -1,6 +1,7 @@
 import { CommandNotGiven } from './errors/user-input-errors/command-not-given'
 import { Flag } from './flag'
 import { FlagExpected } from './errors/user-input-errors/flag-expected'
+import { GitCommand } from './git-command'
 /**
  * Class that is the top level of cli functions
  */
@@ -12,7 +13,6 @@ export class CommandLineInterface {
     this._flags = this.getFlags()
     this.parseFlagValues()
     this.runCommand()
-    console.log(this._flags)
   }
 
   /**
@@ -65,7 +65,8 @@ export class CommandLineInterface {
     switch (this._command) {
       case 'git':
         if (this._flags) {
-          console.log('Hello')
+          // tslint:disable-next-line:no-unused-expression
+          new GitCommand(this._flags)
         } else {
           throw new FlagExpected()
         }
