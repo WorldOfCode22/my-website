@@ -44,9 +44,15 @@ export class GitCommand {
   private runPush () {
     let push = spawn('git', [`push ${this._remote ? 'origin' : ''} ${this._branch}`], { shell: true })
     push.stdout.on('data', (data) => {
+      if (Buffer.isBuffer(data)) {
+        console.log(data.toString())
+      }
       console.log(data)
     })
     push.stderr.on('data', (data) => {
+      if (Buffer.isBuffer(data)) {
+        console.log(data.toString())
+      }
       console.log(data)
     })
     push.on('close', () => {
