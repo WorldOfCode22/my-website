@@ -46,14 +46,16 @@ export class GitCommand {
     push.stdout.on('data', (data) => {
       if (Buffer.isBuffer(data)) {
         console.log(data.toString())
+      } else {
+        console.log(data)
       }
-      console.log(data)
     })
     push.stderr.on('data', (data) => {
       if (Buffer.isBuffer(data)) {
         console.log(data.toString())
+      } else {
+        console.log(data)
       }
-      console.log(data)
     })
     push.on('close', () => {
       console.log('Projected Pushed')
