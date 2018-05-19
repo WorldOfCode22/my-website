@@ -55,7 +55,9 @@ export class CommandLineInterface {
         if (element.content.indexOf('=') > -1) {
           let flagValuePair: string[] = element.content.split('=')
           element.value = flagValuePair[1]
-          element.title = flagValuePair[0].slice(1, flagValuePair.length - 1)
+          element.title = element.short ? flagValuePair[0].slice(1) : flagValuePair[0].slice(2)
+        } else {
+          element.title = element.short ? element.content.slice(1) : element.content.slice(2)
         }
       })
     }
