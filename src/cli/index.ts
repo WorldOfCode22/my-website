@@ -5,7 +5,8 @@ try {
   let cli = new CommandLineInterface()
 } catch (e) {
   if (e instanceof CommandNotGiven) {
-    console.log(e)
     console.log('A command must be provided to use this application. Please try again with a command provided')
+  } else {
+    console.log(e)
   }
 }
