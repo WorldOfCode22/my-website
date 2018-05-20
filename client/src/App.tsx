@@ -3,21 +3,25 @@ import {Container} from 'reactstrap';
 import './App.css';
 import Header from "./components/header/header"
 import Main from './components/main';
+import {getLocationDefaults, IApplicationLocation } from './reducers/location-reducer';
 import {getDefaultNavigation, INavigation, mockNavigation} from "./reducers/navigation-reducer"
 import { getHomePage, IPage } from './reducers/page-reducer';
 
 export interface IState {
   page: IPage
   navigation: INavigation
+  location: IApplicationLocation
 }
 
 export const ApplicationContext = React.createContext({
+  location: getLocationDefaults(),
   navigation: mockNavigation(),
-  page: getHomePage()
+  page: getHomePage(),
 })
 
 class App extends React.Component<{}, IState> {
   public state: IState = {
+    location: getLocationDefaults(),
     navigation: getDefaultNavigation(this),
     page: getHomePage(),
   }
