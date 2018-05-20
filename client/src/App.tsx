@@ -2,24 +2,28 @@ import * as React from 'react';
 import {Container} from 'reactstrap';
 import './App.css';
 import Header from "./components/header/header"
+import {getDefaultNavigation, INavigation, mockNavigation} from "./reducers/navigation-reducer"
 import { getHomePage, IPage } from './reducers/page-reducer';
 
-interface IState {
+export interface IState {
   page: IPage
+  navigation: INavigation
 }
 
 export const ApplicationContext = React.createContext({
+  navigation: mockNavigation(),
   page: getHomePage()
 })
 
 class App extends React.Component<{}, IState> {
   public state: IState = {
-    page: getHomePage()
+    navigation: getDefaultNavigation(this),
+    page: getHomePage(),
   }
   public render() {
     return (
       <ApplicationContext.Provider value={this.state}>
-        <Container>
+        <Container fluid={true}>
           <Header />
         </Container>
       </ApplicationContext.Provider>
