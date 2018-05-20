@@ -1,14 +1,19 @@
 import * as React from "react";
 import {Jumbotron} from "reactstrap";
+import { ApplicationContext } from "../../App";
 import './header.css';
 
 const Header: React.SFC = () => (
-  <div>
-    <Jumbotron className="header">
-      <h1 className="text-center">Sloan Gwaltney</h1>
-      <h5 className="text-center">A passionate diversified web developer</h5>
-    </Jumbotron>
-  </div>
+  <ApplicationContext.Consumer>
+    {state => (
+      <div>
+        <Jumbotron className="header">
+          <h1 className="text-center">{state.page.heading}</h1>
+          <h3 className="text-center">{state.page.subHeading}</h3>
+        </Jumbotron>
+      </div>
+    )}
+  </ApplicationContext.Consumer>
 )
 
 export default Header
