@@ -1,6 +1,7 @@
 import * as React from "react";
-import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavLink } from "reactstrap";
+import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav} from "reactstrap";
 import { ApplicationContext } from "../../App";
+import RouterLink from "../router/router-link";
 
 const Navbar = () => (
   <ApplicationContext.Consumer>
@@ -13,7 +14,7 @@ const Navbar = () => (
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem>
-                  <NavLink>Socket Chat</NavLink>
+                  <RouterLink to='/chat' linkText='Socket Chat' />
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
