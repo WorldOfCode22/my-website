@@ -26,8 +26,6 @@ class App extends React.Component<{}, IState> {
     page: getHomePage(),
   }
   public render() {
-    // tslint:disable-next-line:no-console
-    console.log(this.props)
     return (
       <ApplicationContext.Provider value={this.state}>
         <Container fluid={true}>
