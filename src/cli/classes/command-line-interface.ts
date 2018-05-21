@@ -2,6 +2,7 @@ import { CommandNotGiven } from './errors/user-input-errors/command-not-given'
 import { Flag } from './flag'
 import { FlagExpected } from './errors/user-input-errors/flag-expected'
 import { GitCommand } from './git-command'
+import ApiCommand from './api-command'
 /**
  * Class that is the top level of cli functions
  */
@@ -71,6 +72,15 @@ export class CommandLineInterface {
           new GitCommand(this._flags)
         } else {
           throw new FlagExpected()
+        }
+        break
+      case 'api':
+        if (this._flags) {
+          // tslint:disable-next-line:no-unused-expression
+          new ApiCommand(this._flags)
+        } else {
+          // tslint:disable-next-line:no-unused-expression
+          new ApiCommand()
         }
     }
   }
