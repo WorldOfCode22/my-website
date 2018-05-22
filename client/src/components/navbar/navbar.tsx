@@ -16,6 +16,9 @@ const Navbar = () => (
                 <DropdownItem>
                   <RouterLink to='/chat' linkText='Socket Chat' />
                 </DropdownItem>
+                <DropdownItem>
+                  <RouterLink to="/node-mailer" linkText='NodeMailer' />
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </Nav>
