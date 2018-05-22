@@ -7,14 +7,18 @@ class Mailer {
     this._transporter = createTransport(configuration.emailAuth)
   }
 
-  public sendEmail (type: string, to: string) {
-    let emailInfo = this.getEmailInfo(type, to)
-    this._transporter.sendMail(emailInfo, (error, info) => {
-      if (error) {
-        process.stderr.write(error.toString())
-      } else {
-        process.stdout.write('Email Sent')
-      }
+  public sendEmail (type: string, to: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let emailInfo = this.getEmailInfo(type, to)
+      this._transporter.sendMail(emailInfo, (error, info) => {
+        if (error) {
+          process.stderr.write(error.toString())
+          reject(error)
+        } else {
+          process.stdout.write('Email Sent')
+          resolve(info)
+        }
+      })
     })
   }
   private getEmailInfo (type: string, to: string): MailOptions {
