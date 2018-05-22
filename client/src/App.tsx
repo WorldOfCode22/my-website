@@ -3,17 +3,20 @@ import {Container} from 'reactstrap';
 import './App.css';
 import Header from "./components/header/header"
 import Router from './components/router/router';
+import {getGQLDefaults, IGQLCommandStatus} from "./reducers/gql-reducer";
 import {getLocationDefaults, IApplicationLocation, mockApplicationLocation } from './reducers/location-reducer';
 import {getDefaultNavigation, INavigation, mockNavigation} from "./reducers/navigation-reducer"
 import { getHomePage, IPage } from './reducers/page-reducer';
 
 export interface IState {
+  gql: IGQLCommandStatus
   page: IPage
   navigation: INavigation
   location: IApplicationLocation
 }
 
 export const ApplicationContext = React.createContext({
+  gql: getGQLDefaults(),
   location: mockApplicationLocation,
   navigation: mockNavigation(),
   page: getHomePage(),
@@ -21,6 +24,7 @@ export const ApplicationContext = React.createContext({
 
 class App extends React.Component<{}, IState> {
   public state: IState = {
+    gql: getGQLDefaults(),
     location: getLocationDefaults(this),
     navigation: getDefaultNavigation(this),
     page: getHomePage(),
