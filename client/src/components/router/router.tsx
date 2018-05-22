@@ -1,7 +1,9 @@
 import * as React from "react"
 import { ApplicationContext } from "../../App";
 import Home from "../home/home";
+import GeneralLoading from "../loading/general-loading";
 import Chat from "../skills-components/chat/chat";
+import NodeMailer from "../skills-components/node-mailer/node-mailer";
 
 const Router = () => (
   <ApplicationContext.Consumer>
@@ -11,6 +13,10 @@ const Router = () => (
           return <Home />
         case '/chat':
           return <Chat />
+        case '/loading':
+          return <GeneralLoading />
+        case '/node-mailer':
+          return <NodeMailer />
         default:
           return <Home />
       }
