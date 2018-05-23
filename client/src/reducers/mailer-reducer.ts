@@ -21,7 +21,7 @@ export function getDefaultMailer (comp: React.Component<{}, IState>) {
       mailer.type = type;
       gql.loading = true;
       location.location = '/loading';
-      comp.setState({gql, mailer});
+      comp.setState({gql, location, mailer});
     },
     to: "",
     type: ""
