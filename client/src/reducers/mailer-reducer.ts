@@ -1,4 +1,5 @@
 import { IState } from "../App";
+import GQLCommand from "../components/gql-command/gql-command";
 
 export interface IMailer {
   to: string,
@@ -19,8 +20,10 @@ export function getDefaultMailer (comp: React.Component<{}, IState>) {
       const { gql, location, mailer} = comp.state;
       mailer.to = to;
       mailer.type = type;
+      gql.active = true;
       gql.loading = true;
       location.location = '/loading';
+      GQLCommand({state: comp.state, query: `test`})
       comp.setState({gql, location, mailer});
     },
     to: "",
