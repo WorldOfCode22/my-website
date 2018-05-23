@@ -4,7 +4,8 @@ import './App.css';
 import Header from "./components/header/header";
 import Navbar from "./components/navbar/navbar";
 import Router from './components/router/router';
-import {getGQLDefaults, IGQLCommandStatus} from "./reducers/gql-reducer";
+import { getEnvironment, IEnvironment } from './reducers/env';
+import {getGQLDefaults, IGQLCommandStatus, mockGQL} from "./reducers/gql-reducer";
 import {getLocationDefaults, IApplicationLocation, mockApplicationLocation } from './reducers/location-reducer';
 import { getDefaultMailer, IMailer, mockMailerData } from './reducers/mailer-reducer';
 import {getDefaultNavigation, INavigation, mockNavigation} from "./reducers/navigation-reducer"
@@ -12,6 +13,7 @@ import { getHomePage, IPage } from './reducers/page-reducer';
 
 
 export interface IState {
+  env: IEnvironment,
   gql: IGQLCommandStatus,
   mailer: IMailer,
   page: IPage
@@ -20,7 +22,8 @@ export interface IState {
 }
 
 export const ApplicationContext = React.createContext({
-  gql: getGQLDefaults(),
+  env: getEnvironment(),
+  gql: mockGQL,
   location: mockApplicationLocation,
   mailer: mockMailerData,
   navigation: mockNavigation(),
@@ -29,7 +32,8 @@ export const ApplicationContext = React.createContext({
 
 class App extends React.Component<{}, IState> {
   public state: IState = {
-    gql: getGQLDefaults(),
+    env: getEnvironment(),
+    gql: getGQLDefaults(this),
     location: getLocationDefaults(this),
     mailer: getDefaultMailer(this),
     navigation: getDefaultNavigation(this),
