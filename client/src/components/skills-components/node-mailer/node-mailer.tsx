@@ -6,7 +6,7 @@ import { ApplicationContext } from '../../../App';
 const NodeMailer = () => (
   <ApplicationContext.Consumer>
     {state => {
-      if (state.gql.data.empty) {
+      if (!state.gql.active) {
         return <MailerTestForm formData={state.mailer}/>
       } else {
         return <MailerDone />
