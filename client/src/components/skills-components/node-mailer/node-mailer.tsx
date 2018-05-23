@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
+import { IMailer } from 'src/reducers/mailer-reducer';
 import { ApplicationContext } from '../../../App';
 
 const NodeMailer = () => (
@@ -15,7 +16,7 @@ const NodeMailer = () => (
 )
 
 interface IFormProps {
-  formData: {}
+  formData: IMailer
 }
 const MailerTestForm = (props: IFormProps) => (
   <Col className="text-center">
@@ -31,7 +32,11 @@ const MailerTestForm = (props: IFormProps) => (
           <option>Contact Me Verification</option>
         </Input>
       </FormGroup>
-      <Button color="primary">Send Email</Button>
+      {/* tslint:disable-next-line:jsx-no-lambda */}
+      <Button color="primary" onClick={(event: React.SyntheticEvent<MouseEvent>) => {
+        event.preventDefault();
+        props.formData.sendMail("", "");
+      }}>Send Email</Button>
     </Form>
   </Col>
 )
