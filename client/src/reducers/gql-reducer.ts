@@ -1,15 +1,31 @@
+import { IState } from "../App";
+
 export interface IGQLCommandStatus {
-  data: {
-    empty: boolean
-  },
-  loading: boolean
+  active: boolean,
+  data: {},
+  loading: boolean,
+  seatData: (data: any) => void
 }
 
-export function getGQLDefaults(): IGQLCommandStatus {
+export const mockGQL: IGQLCommandStatus = {
+  active: false,
+  data: {},
+  loading: false,
+  // tslint:disable-next-line:no-empty
+  seatData: (data: any) => {}
+}
+
+export function getGQLDefaults (comp: React.Component<{}, IState>): IGQLCommandStatus {
   return {
-    data: {
-      empty: true
-    },
-    loading: false
+    active: false,
+    data: {},
+    loading: false,
+    seatData: (data: any) => {
+      const {gql} = comp.state
+      gql.loading = false;
+      gql.active = false;
+      gql.data = data
+      comp.setState({gql})
+    }
   }
 }
