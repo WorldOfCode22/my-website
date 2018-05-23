@@ -2,6 +2,7 @@ import express from 'express'
 import expressGraphQL from 'express-graphql'
 import ConfigurationManager from '../classes/configuration-manager'
 import Schema from '../gql/schema'
+import cors from 'cors'
 
 export default class ExpressApplication {
   private _application: express.Express = express()
@@ -10,6 +11,7 @@ export default class ExpressApplication {
   }
 
   private setup () {
+    this._application.use(cors())
     this._application.use('/graphql', expressGraphQL({
       graphiql: true,
       schema: Schema
