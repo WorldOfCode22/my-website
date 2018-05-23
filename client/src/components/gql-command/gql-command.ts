@@ -1,6 +1,7 @@
 import { IState } from "../../App";
 
 interface IProps {
+  local: string
   state: IState
   query: string
 }
@@ -13,7 +14,7 @@ const GQLCommand = (props: IProps) => {
           method: "POST",
         })
         .then((data) => {
-          props.state.gql.seatData(data)
+          props.state.gql.seatData(data, props.local)
           return null
         })
         .catch((err) => {
