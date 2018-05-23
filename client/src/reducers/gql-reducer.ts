@@ -4,7 +4,7 @@ export interface IGQLCommandStatus {
   active: boolean,
   data: {},
   loading: boolean,
-  seatData: (data: any) => void
+  seatData: (data: any, local: string) => void
 }
 
 export const mockGQL: IGQLCommandStatus = {
@@ -12,7 +12,7 @@ export const mockGQL: IGQLCommandStatus = {
   data: {},
   loading: false,
   // tslint:disable-next-line:no-empty
-  seatData: (data: any) => {}
+  seatData: (data: any, local: string) => {}
 }
 
 export function getGQLDefaults (comp: React.Component<{}, IState>): IGQLCommandStatus {
@@ -20,12 +20,15 @@ export function getGQLDefaults (comp: React.Component<{}, IState>): IGQLCommandS
     active: false,
     data: {},
     loading: false,
-    seatData: (data: any) => {
-      const {gql} = comp.state
+    seatData: (data: any, local: string) => {
+      const {gql, location} = comp.state
       gql.loading = false;
       gql.active = false;
       gql.data = data
-      comp.setState({gql})
+      location.location = local
+      comp.setState({gql, location})
+      // tslint:disable-next-line:no-console
+      console.log(local, comp.state)
     }
   }
 }
