@@ -22,8 +22,12 @@ export function getDefaultMailer (comp: React.Component<{}, IState>) {
       mailer.type = type;
       gql.active = true;
       gql.loading = true;
+      GQLCommand({local: location.location, query: `{
+        NodeMailer(to:"${to}", type:"${type}"){
+          emailSent
+        }
+      }`, state: comp.state})
       location.location = '/loading';
-      GQLCommand({state: comp.state, query: `test`})
       comp.setState({gql, location, mailer});
     },
     to: "",
