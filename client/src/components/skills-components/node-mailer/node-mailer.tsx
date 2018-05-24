@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
 import { IMailer } from 'src/reducers/mailer-reducer';
+import {createAction, IAction } from '../../../action-reducers';
 import { ApplicationContext } from '../../../App';
 
 const NodeMailer = () => (
   <ApplicationContext.Consumer>
     {state => {
       if (!state.gql.active) {
-        return <MailerTestForm formData={state.mailer}/>
+        return <MailerTestForm formData={state.mailer} actionListener={state.actionListener}/>
       } else {
         return <MailerDone />
       }
@@ -16,7 +17,8 @@ const NodeMailer = () => (
 )
 
 interface IFormProps {
-  formData: IMailer
+  formData: IMailer,
+  actionListener: (action: IAction) => void
 }
 const MailerTestForm = (props: IFormProps) => (
   <Col className="text-center">
@@ -35,7 +37,7 @@ const MailerTestForm = (props: IFormProps) => (
       {/* tslint:disable-next-line:jsx-no-lambda */}
       <Button color="primary" onClick={(event: React.SyntheticEvent<MouseEvent>) => {
         event.preventDefault();
-        props.formData.sendMail("", "");
+        props.actionListener(createAction("EMAIL REQUESTED", {mailer: {type: "", to: ""}}));
       }}>Send Email</Button>
     </Form>
   </Col>
