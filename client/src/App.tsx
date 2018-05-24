@@ -7,9 +7,9 @@ import Navbar from "./components/navbar/navbar";
 import Router from './components/router/router';
 import { getEnvironment, IEnvironment } from './reducers/env';
 import {getGQLDefaults, IGQLCommandStatus, mockGQL} from "./reducers/gql-reducer";
-import {getLocationDefaults, IApplicationLocation, mockApplicationLocation } from './reducers/location-reducer';
+import {getLocationDefaults, IApplicationLocation} from './reducers/location-reducer';
 import { getDefaultMailer, IMailer, mockMailerData } from './reducers/mailer-reducer';
-import {getDefaultNavigation, INavigation, mockNavigation} from "./reducers/navigation-reducer"
+import {getDefaultNavigation, INavigation} from "./reducers/navigation-reducer"
 import { getHomePage, IPage } from './reducers/page-reducer';
 
 
@@ -29,9 +29,9 @@ export const ApplicationContext = React.createContext({
   actionListener: (action: IAction) => {},
   env: getEnvironment(),
   gql: mockGQL,
-  location: mockApplicationLocation,
+  location: getLocationDefaults(),
   mailer: mockMailerData,
-  navigation: mockNavigation(),
+  navigation: getDefaultNavigation(),
   page: getHomePage(),
 })
 
@@ -42,9 +42,9 @@ class App extends React.Component<{}, IState> {
     },
     env: getEnvironment(),
     gql: getGQLDefaults(this),
-    location: getLocationDefaults(this),
+    location: getLocationDefaults(),
     mailer: getDefaultMailer(this),
-    navigation: getDefaultNavigation(this),
+    navigation: getDefaultNavigation(),
     page: getHomePage(),
   }
   public render() {
