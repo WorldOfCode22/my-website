@@ -13,8 +13,10 @@ export interface IAction {
     },
     location?: string,
     mailer?: {
-      to: string
-      type: string
+      toInputChange?: string
+      typeInputChange?: string,
+      to?: string
+      type?: string
     }
   }
 }
