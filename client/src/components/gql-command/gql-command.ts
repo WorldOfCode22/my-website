@@ -14,11 +14,21 @@ const GQLCommand = (props: IProps) => {
           headers: { "content-type": "application/json" },
           method: "POST",
         })
-        .then((data) => {
-          props.state.actionListener(createAction("GQL DATA FETCHED", {location: props.state.location.location}))
-          return null
+        .then((response) => {
+          return response.json()
         })
+        .then(
+          (data) => {
+            if(data.errors.length === 0){
+              props.state.actionListener(createAction("GQL DATA FETCHED", {location: props.state.location.location, gql: {data: data.data}}))
+            } else {
+              props.state.actionListener(createAction("GQL FETCH ERROR", {gql: {errors: data.errors}, location: props.state.location.location}))
+            }
+          }
+        )
         .catch((err) => {
+          // tslint:disable-next-line:no-console
+          console.log(err)
           return null
         })
       }
