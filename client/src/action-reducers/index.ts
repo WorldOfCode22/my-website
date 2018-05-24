@@ -5,6 +5,7 @@ import navigationActionListener from "./navigation-action-reducer";
 export interface IAction {
   type: string,
   payload: {
+    data?: {},
     location?: string
   }
 }

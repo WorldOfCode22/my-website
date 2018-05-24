@@ -11,6 +11,11 @@ function locationActionListener (comp: React.Component<{}, IState>, action: IAct
       } else {
         throw new Error("No Location Provided To Action Listener For Action Type CHANGE LOCATION")
       }
+    case "GQL DATA FETCHED":
+      if (action.payload.location) {
+          location.location = action.payload.location
+          comp.setState({location})
+      }
   }
 }
 

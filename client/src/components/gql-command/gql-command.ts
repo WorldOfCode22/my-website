@@ -1,3 +1,4 @@
+import { createAction } from "../../action-reducers";
 import { IState } from "../../App";
 
 interface IProps {
@@ -14,7 +15,7 @@ const GQLCommand = (props: IProps) => {
           method: "POST",
         })
         .then((data) => {
-          props.state.gql.seatData(data, props.local)
+          props.state.actionListener(createAction("GQL DATA FETCHED", {location: props.state.location.location}))
           return null
         })
         .catch((err) => {
