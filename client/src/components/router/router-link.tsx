@@ -11,7 +11,7 @@ const RouterLink: React.SFC<IProps> = (props: IProps) => (
   <ApplicationContext.Consumer>
     {state => (
       // tslint:disable-next-line:jsx-no-lambda
-      <NavLink onClick={() => {state.location.changeLocation(props.to)}}>{props.linkText}</NavLink>
+      <NavLink onClick={() => {state.actionListener({ payload: {location: props.to}, type: "CHANGE LOCATION"})}}>{props.linkText}</NavLink>
     )}
   </ApplicationContext.Consumer>
 )

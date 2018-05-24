@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Col, Container, Row} from 'reactstrap';
+import actionListener, { IAction } from './action-reducers';
 import './App.css';
 import Header from "./components/header/header";
 import Navbar from "./components/navbar/navbar";
@@ -13,6 +14,8 @@ import { getHomePage, IPage } from './reducers/page-reducer';
 
 
 export interface IState {
+  // tslint:disable-next-line:ban-types
+  actionListener: (action: IAction) => void,
   env: IEnvironment,
   gql: IGQLCommandStatus,
   mailer: IMailer,
@@ -22,6 +25,8 @@ export interface IState {
 }
 
 export const ApplicationContext = React.createContext({
+  // tslint:disable-next-line:no-empty
+  actionListener: (action: IAction) => {},
   env: getEnvironment(),
   gql: mockGQL,
   location: mockApplicationLocation,
@@ -32,6 +37,9 @@ export const ApplicationContext = React.createContext({
 
 class App extends React.Component<{}, IState> {
   public state: IState = {
+    actionListener: (action: IAction) => {
+      actionListener(this, action)
+    },
     env: getEnvironment(),
     gql: getGQLDefaults(this),
     location: getLocationDefaults(this),
