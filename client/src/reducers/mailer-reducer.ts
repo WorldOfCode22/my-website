@@ -6,6 +6,6 @@ export interface IMailer {
 export function getDefaultMailer () {
   return {
     to: "",
-    type: ""
+    type: "Test"
   }
 }
