@@ -25,19 +25,27 @@ const MailerTestForm = (props: IFormProps) => (
     <Form>
       <FormGroup>
         <Label for="email">Email</Label>
-        <Input type="email" id="email" placeholder="Email" />
+        <Input type="email" id="email" placeholder="Email" 
+          // tslint:disable-next-line:jsx-no-lambda
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            // tslint:disable-next-line:no-console
+            props.actionListener(createAction("TO INPUT CHANGE", {mailer: {toInputChange: event.target.value}}))
+          }} />
       </FormGroup>
       <FormGroup>
         <Label>Type of Email</Label>
-        <Input type="select">
-          <option>Show of ability to use NodeMailer</option>
-          <option>Contact Me Verification</option>
+        {/* tslint:disable-next-line:jsx-no-lambda */}
+        <Input type="select" value={props.formData.type} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          props.actionListener(createAction("TYPE INPUT CHANGE", {mailer: {typeInputChange: event.target.value}}))
+        }}>
+          <option value="Test">Show of ability to use NodeMailer</option>
+          <option value="Contact Me">Contact Me Verification</option>
         </Input>
       </FormGroup>
       {/* tslint:disable-next-line:jsx-no-lambda */}
       <Button color="primary" onClick={(event: React.SyntheticEvent<MouseEvent>) => {
         event.preventDefault();
-        props.actionListener(createAction("EMAIL REQUESTED", {mailer: {type: "", to: ""}}));
+        props.actionListener(createAction("EMAIL REQUESTED", {mailer: {type: props.formData.to, to: props.formData.type}}));
       }}>Send Email</Button>
     </Form>
   </Col>
