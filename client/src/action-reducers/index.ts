@@ -3,6 +3,7 @@ import gqlActionListener from "./gql-action-reducer";
 import locationActionListener from "./location-action-reducer";
 import mailerActionListener from "./mailer-action-reducer";
 import navigationActionListener from "./navigation-action-reducer";
+import pageActionListener from "./page-action-reducer";
 
 export interface IAction {
   type: string,
@@ -36,6 +37,7 @@ function actionListener(comp: React.Component<{}, IState>,action: IAction) {
     navigationActionListener(comp, action);
     gqlActionListener(comp, action);
     mailerActionListener(comp, action);
+    pageActionListener(comp, action)
     // tslint:disable-next-line:no-console
     console.log({actionCalled: action, newState: comp.state})
   } else {
@@ -43,6 +45,7 @@ function actionListener(comp: React.Component<{}, IState>,action: IAction) {
     navigationActionListener(comp, action);
     gqlActionListener(comp, action);
     mailerActionListener(comp, action);
+    pageActionListener(comp, action)
   }
 }
 
