@@ -45,7 +45,7 @@ const MailerTestForm = (props: IFormProps) => (
       {/* tslint:disable-next-line:jsx-no-lambda */}
       <Button color="primary" onClick={(event: React.SyntheticEvent<MouseEvent>) => {
         event.preventDefault();
-        props.actionListener(createAction("EMAIL REQUESTED", {mailer: {type: props.formData.to, to: props.formData.type}}));
+        props.actionListener(createAction("EMAIL REQUESTED", {mailer: {type: props.formData.type, to: props.formData.to}}));
       }}>Send Email</Button>
     </Form>
   </Col>
