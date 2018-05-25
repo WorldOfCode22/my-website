@@ -19,7 +19,7 @@ const GQLCommand = (props: IProps) => {
         })
         .then(
           (data) => {
-            if(data.errors.length === 0){
+            if(data.errors === undefined){
               props.state.actionListener(createAction("GQL DATA FETCHED", {location: props.state.location.location, gql: {data: data.data}}))
             } else {
               props.state.actionListener(createAction("GQL FETCH ERROR", {gql: {errors: data.errors}, location: props.state.location.location}))
