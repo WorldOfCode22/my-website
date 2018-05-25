@@ -9,7 +9,7 @@ function pageActionListener(comp: React.Component<{}, IState>, action: IAction) 
       page.heading = "Sloan Gwaltney";
       page.subHeading = "A passionate diversified web developer";
     case "/node-mailer":
-      page.heading = "I Can Mail";
+      page.heading = "I Can Node Mail";
       page.subHeading = "Email is a important way to notify clients";
    }
  }
