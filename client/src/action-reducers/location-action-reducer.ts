@@ -16,7 +16,8 @@ function locationActionListener (comp: React.Component<{}, IState>, action: IAct
     case "GQL DATA FETCHED":
       if (action.payload.location) {
           location.lastLocation = location.location;
-          location.location = action.payload.location;
+          location.location = location.nextLocation;
+          location.nextLocation = ""
           comp.setState({location});
       }
       break
@@ -30,6 +31,7 @@ function locationActionListener (comp: React.Component<{}, IState>, action: IAct
       break
     case "EMAIL REQUESTED":
       location.location = "/loading"
+      location.nextLocation = "/"
       comp.setState({location})
   }
 }
