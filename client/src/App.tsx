@@ -11,6 +11,7 @@ import {getLocationDefaults, IApplicationLocation} from './reducers/location-red
 import { getDefaultMailer, IMailer } from './reducers/mailer-reducer';
 import {getDefaultNavigation, INavigation} from "./reducers/navigation-reducer"
 import { getHomePage, IPage } from './reducers/page-reducer';
+import { getSocketDefaults, ISocket } from './reducers/socket-reducer';
 
 
 export interface IState {
@@ -19,9 +20,10 @@ export interface IState {
   env: IEnvironment,
   gql: IGQLCommandStatus,
   mailer: IMailer,
-  page: IPage
-  navigation: INavigation
-  location: IApplicationLocation
+  page: IPage,
+  navigation: INavigation,
+  location: IApplicationLocation,
+  socket: ISocket
 }
 
 export const ApplicationContext = React.createContext({
@@ -46,6 +48,7 @@ class App extends React.Component<{}, IState> {
     mailer: getDefaultMailer(),
     navigation: getDefaultNavigation(),
     page: getHomePage(),
+    socket: getSocketDefaults(this)
   }
   public render() {
     return (
