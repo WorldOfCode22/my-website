@@ -6,6 +6,6 @@ const config = new ConfigurationManager()
 
 const app = new ExpressApplication()
 
-app.application.listen(config.port, () => {
+app.server.listen(config.port, () => {
   process.stdout.write('Application waiting for request on port: ' + config.port)
 })
