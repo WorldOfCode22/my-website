@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { IMailer } from 'src/reducers/mailer-reducer';
 import {createAction, IAction } from '../../../action-reducers';
 import { ApplicationContext } from '../../../App';
@@ -21,7 +21,7 @@ interface IFormProps {
   actionListener: (action: IAction) => void
 }
 const MailerTestForm = (props: IFormProps) => (
-  <Col className="text-center">
+  <div className="text-center">
     <Form>
       <FormGroup>
         <Label for="email">Email</Label>
@@ -48,7 +48,7 @@ const MailerTestForm = (props: IFormProps) => (
         props.actionListener(createAction("EMAIL REQUESTED", {mailer: {type: props.formData.type, to: props.formData.to}}));
       }}>Send Email</Button>
     </Form>
-  </Col>
+  </div>
 )
 
 const MailerDone = () => (
