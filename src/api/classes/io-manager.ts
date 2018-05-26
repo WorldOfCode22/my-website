@@ -10,7 +10,25 @@ export default class IOManager {
 
   private setupSocket () {
     this._ioServer.on('connection', (socket) => {
-      console.log('New Socket Connection')
+      this._socket = socket
+      this._socket.on('MESSAGE TO SERVER', this.onMessageToServer.bind(this))
     })
+  }
+
+  private onMessageToServer () {
+    if (this._socket) {
+      this._socket.emit('SERVER RECEIVED USER MESSAGE')
+      this.respondToUser()
+    } else {
+      console.log('No Socket..... How?')
+    }
+  }
+
+  private respondToUser () {
+    if (this._socket) {
+      this._socket.emit('SERVER RESPONDED TO USER MESSAGE', 'test')
+    } else {
+      console.log('No Socket..... How?')
+    }
   }
 }
